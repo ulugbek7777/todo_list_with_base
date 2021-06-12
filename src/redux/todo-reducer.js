@@ -1,5 +1,5 @@
 let initialState = {
-    posts: [['namuna uchun']],
+    posts: [['namuna uchun', []]],
     id: null,
     underWork: false
 };
@@ -17,7 +17,7 @@ const todoReducer = (state = initialState, action) => {
             let newPost = action.posts;
             return {
                 ...state,
-                posts: [...state.posts, newPost]
+                posts: [...state.posts, [newPost, []]]
             };
         }
         case DELETE_NEW_WORK: {
@@ -51,9 +51,18 @@ const todoReducer = (state = initialState, action) => {
             }
         }
         case ADD_NEW_UNDER_WORK: {
-            state.posts[action.data.id][0] = action.newWorkPost;
-            return {
-                ...state
+            // state.underWork = !state.underWork;
+            if(action.data.newWorkPost) {
+                
+                state.posts[action.data.id][1].push(action.data.newWorkPost)
+                let com = initialState.posts.comment;
+                return {
+                    ...state,
+                }
+            } else {
+                return {
+                    ...state
+                }
             }
         }
         default: return state;    

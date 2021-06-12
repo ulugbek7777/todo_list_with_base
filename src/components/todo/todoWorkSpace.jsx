@@ -48,7 +48,7 @@ const TodoWorkSpace = (props) => {
                 <div><input className={s.checkInput} type="checkbox" onClick={(e) => console.log(e.currentTarget.value)}/></div>
                     <div className={s.inputblock}>
                     { !editMode &&
-                        <p className={s.works}>{props.workText}</p>
+                        <p className={s.works}>{props.workText[0]}</p>
                     }   
                     { editMode &&
                         <textarea className={s.textAstyle} value={status} onChange={(e) => updatePostOnChange(e)} autoFocus={true} 
