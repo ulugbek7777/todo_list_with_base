@@ -30,7 +30,7 @@ const Todo = (props) => {
                 { !props.underWorkF&& 
                     <div className={s.container}>
                         <div>
-                            <h1>TODO APP</h1>
+                            <h1>TODOOOOOOO APPPPPPPP</h1>
                             <AddNewWorkReduxForm onSubmit={onSubmit}/>
                         </div>
                         {props.posts.map(w => <TodoWorkSpace workText={w} p={i++} key={j++} 
