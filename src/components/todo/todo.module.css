@@ -1,0 +1,78 @@
+.container {
+    
+}
+
+.container h1 {
+    color: white;
+    text-align: center;
+}
+
+.container form {
+    text-align: center;
+}
+
+
+.container .addElementInput {
+    border-radius: 10px 0 0 10px;
+    text-decoration: none;
+    border: none;
+    padding: 10px;
+    width: 300px;
+    outline: none;
+}
+.container .addElementButton {
+    border-radius: 0 10px 10px 0;
+    text-decoration: none;
+    border: none;
+    padding: 10px;
+}
+.container img {
+    width: 20px;
+    display: inline-block;
+    margin-right: 10px;
+}
+.rightImgs {
+    display: inline-block;
+    margin-left: 30px;
+    cursor: pointer;
+}
+.inputblock {
+    float: left;
+}
+.container .card {
+    width: 700px;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 10px;
+    margin-top: 20px;
+    padding: 20px;
+
+    display: grid;
+    grid-template-columns: 0.3fr 3fr 1fr;
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+.works {
+    margin: 0;
+    display: inline-block;
+    float: left;
+    margin-top: -2px;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.checkInput {
+    margin: 0px 10px 0px 10px;
+}
+
+.textAstyle {
+    text-decoration: none;
+    border: none;
+    outline: none;
+    width: 90%;
+    overflow: auto;
+}
+

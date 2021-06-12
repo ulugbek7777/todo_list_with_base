@@ -1,0 +1,56 @@
+.todoModal {
+    padding: 0;
+    height: 100vh;
+    /* margin-top: -21px; */
+    width: 100%;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(3px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.blockModal {
+    position: absolute;
+    background-color: white;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: 20px 40px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 700px;
+    max-height: 960px;
+    min-height: 500px;
+}
+.stylebtn {
+    border: none;
+    background: none;
+    border-bottom: 1px solid silver;
+    padding: 5px;
+    font-size: 24px;
+    width: 30%;
+}
+.stylebtn:focus {
+    font-weight: 700;
+    color: #202020;
+    border-bottom: 1px solid #202020;
+}
+.tabs {
+    text-align: center;
+}
+.plusIco {
+    fill: #FEC92B;
+    width: 38px;
+    margin-left: 30px;
+    margin-top: 10px;
+}
+.plusIco {
+    fill: #fe442b;
+}
+.post {
+    width: 600px;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
