@@ -1,5 +1,5 @@
 let initialState = {
-    posts: [['namuna uchun', []]],
+    posts: [['namuna uchun', ['kcndnlkl']]],
     id: null,
     underWork: false
 };
@@ -30,7 +30,7 @@ const todoReducer = (state = initialState, action) => {
             }
         }
         case UPDATE_NEW_WORK: {
-            state.posts[action.data.id] = action.data.post;
+            state.posts[action.data.id][0] = action.data.post;
             return {
                 ...state,
                 posts: [...state.posts]  

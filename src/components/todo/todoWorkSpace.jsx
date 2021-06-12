@@ -32,13 +32,14 @@ const TodoWorkSpace = (props) => {
     const deactivate = () => {
         setUnderWork(false);
     }
+    debugger
     let [editMode, setEditMode] = useState(false);
     let [editUnder, setUnderWork] = useState(false);
-    let [status, setStatus] = useState(props.status);
-
+    let [status, setStatus] = useState(props.workText[0]);
+    console.log(props.workText[0])
     useEffect( () => {
-        setStatus(props.workText);
-    }, [props.workText] );
+        setStatus(props.workText[0]);
+    }, [props.workText[0]] );
         const underWorkFunc = () => {
             props.underWork({id: props.p, underWork: true});
         }
