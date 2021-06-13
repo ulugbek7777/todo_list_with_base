@@ -9,7 +9,7 @@ import TodoModal from './todoModal';
 const AddNewWorkForm = (props) => {
     return(
         <form onSubmit={props.handleSubmit}>
-            <Field className={s.addElementInput} type="text" placeholder="dcjnsvjn" name='postWork' component={'input'}/>
+            <Field className={s.addElementInput} type="text" placeholder="Add new tasks" name='postWork' component={'input'}/>
             <button className={s.addElementButton}>Add</button>
         </form>
     )
