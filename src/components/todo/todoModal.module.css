@@ -20,7 +20,7 @@
     width: 100%;
     max-width: 700px;
     max-height: 960px;
-    min-height: 500px;
+    min-height: 500px;    
 }
 .stylebtn {
     border: none;
@@ -115,7 +115,17 @@
   .block_under_wors {
       margin: 0 auto;
   }
-  .block_under_wors p {
+  /* .block_under_wors p {
       padding: 5px;
     border-bottom: solid 1px rgb(243, 117, 117);
+  } */
+  .block_under_wors {
+      height: 350px;
+      overflow: auto;
+  }
+  .close_icon {
+      width: 20px;
+      position: absolute;
+      right: 20px;
+      cursor: pointer;
   }

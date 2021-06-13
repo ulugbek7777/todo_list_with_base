@@ -32,24 +32,39 @@ const TodoWorkSpace = (props) => {
     const deactivate = () => {
         setUnderWork(false);
     }
-    debugger
+    
     let [editMode, setEditMode] = useState(false);
     let [editUnder, setUnderWork] = useState(false);
     let [status, setStatus] = useState(props.workText[0]);
+    let [check, setCheck] = useState(false);
     console.log(props.workText[0])
     useEffect( () => {
         setStatus(props.workText[0]);
     }, [props.workText[0]] );
         const underWorkFunc = () => {
             props.underWork({id: props.p, underWork: true});
+    }
+    let decr = 'none';
+    let opc = '1';
+    const oncnge = (e) => {
+        if(e) {
+            setCheck(!check);
         }
+    }
+    if(check) {
+        decr = 'line-through';
+        opc = '0.8';
+        console.log('ishladi')
+    }
         return (
-            <div>            
+            <div style={{opacity: opc}}>            
                 <div className={s.card}>
-                <div><input className={s.checkInput} type="checkbox" onClick={(e) => console.log(e.currentTarget.value)}/></div>
+                <div><input onChange={(e) => oncnge(e.currentTarget.value)} 
+                className={s.checkInput}
+                type="checkbox"/></div>
                     <div className={s.inputblock}>
                     { !editMode &&
-                        <p className={s.works}>{props.workText[0]}</p>
+                        <p style={{ textDecoration: decr }} className={s.works}>{props.workText[0]}</p>
                     }   
                     { editMode &&
                         <textarea className={s.textAstyle} value={status} onChange={(e) => updatePostOnChange(e)} autoFocus={true} 

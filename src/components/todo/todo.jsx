@@ -10,7 +10,7 @@ const AddNewWorkForm = (props) => {
     return(
         <form onSubmit={props.handleSubmit}>
             <Field className={s.addElementInput} type="text" placeholder="dcjnsvjn" name='postWork' component={'input'}/>
-            <button className={s.addElementButton}>send</button>
+            <button className={s.addElementButton}>Add</button>
         </form>
     )
 }

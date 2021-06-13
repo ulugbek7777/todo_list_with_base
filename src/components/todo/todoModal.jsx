@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import { connect } from 'react-redux'
-import { addNewUnderWork, addNewWork, underWork } from '../../redux/todo-reducer'
-import NewWorks from '../newWorks'
+import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
+import { addNewUnderWork, addNewWork, closeModalWindow, deleteNewUnderWork, underWork, updateNewUnderWork, updateNewWork } from '../../redux/todo-reducer'
+import NewWorks from './newWorks'
 import AutoHeightTextarea from './Textarea'
-import s from './todoModal.module.css'
+import s from './todoModal.module.css';
+import CloseIcon from './../images/close.svg';
 
 function TodoModal(props) {
     const ActiveteTextArea = () => {
@@ -27,9 +28,11 @@ function TodoModal(props) {
         props.addUderWork({id: props.id, newWorkPost: dta});
         setEditMode(false);
     }
+    let d = '';
     return (
         <div className={s.todoModal}>
             <div className={s.blockModal}>
+                <img onClick={() => props.closeModal() } className={s.close_icon} src={CloseIcon} alt="img" />
                 <p className={s.post}>{status}</p>
                 <div className={s.tabs}>
                     <button onClick={() => setEditModeWorks(true)} autoFocus className={s.stylebtn}>Qo'shimcha vazifa</button>
@@ -37,10 +40,12 @@ function TodoModal(props) {
                 </div>
                 { editModeWorks &&
                     <div>
-                                        <div className={s.block_under_wors}>
-                    { props.posts[props.id][1].map(a => <NewWorks a={a} />) }
-                </div>
-                { !editMode &&
+                <div className={s.block_under_wors}>
+                    { props.posts[props.id][1].map(a => <NewWorks idArray={props.id} a={a} id={d++} 
+                    deleteNewUnderWork={props.deleteNewUnderWork}
+                    updateNewUnderWork={props.updateNewUnderWork}
+                    />) }
+                    { !editMode &&
                     <div>
                         <svg onClick={ActiveteTextArea} className={s.plusIco}
                         viewBox="0 0 20 20">
@@ -61,6 +66,14 @@ function TodoModal(props) {
                         </div>
                     </div>
                 }
+                </div>
+                    </div>
+                }
+                { !editModeWorks &&
+                    <div>
+                        <center>
+                            <h1>Hozircha izohlar bolimi ishga tushmagan!</h1>
+                        </center>
                     </div>
                 }
 
@@ -82,6 +95,15 @@ let mapDispatchToProps = (dispatch) => {
         },
         addUderWork: (data) => {
             dispatch(addNewUnderWork(data))
+        },
+        deleteNewUnderWork: (data) => {
+            dispatch(deleteNewUnderWork(data));
+        },
+        updateNewUnderWork: (data) => {
+            dispatch(updateNewUnderWork(data));
+        },
+        closeModal: () => {
+            dispatch(closeModalWindow());
         }
     }
 }
