@@ -10,8 +10,11 @@ let reducers = combineReducers({
 });
 
 
-let store = createStore(reducers);
+let store = createStore(reducers, (localStorage['redux-store']) ? JSON.parse(localStorage['redux-store']) : {});
 
+store.subscribe(() => {
+    localStorage['redux-store'] = JSON.stringify(store.getState())
+})
 window.store = store;
 
 

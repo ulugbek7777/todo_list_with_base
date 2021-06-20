@@ -4,19 +4,21 @@ import AyeIcon from './../images/view.png';
 import ElusIcon from './../images/plus.png';
 import EditIcon from './../images/edit.png';
 import DeleteIcon from './../images/delete.png';
-import AutoHeightTextarea from './Textarea';
-import TodoModal from './todoModal';
 
 
 
 const TodoWorkSpace = (props) => {
     let i = 0;
     const deletePost = (p) => {
-        props.deleteNewWork(p)
+        let data = prompt('ochirmoqchimisiz', 'ha');
+        
+        if(data == 'ha') {
+            props.deleteNewWork(p)         
+        }
     }
     const EditChange = (p) => {
         // props.updateNewWork({id: p, post: 'yo mazafaka'});
-        setEditMode(true);
+        if(!check) setEditMode(true);
     }
     const updatePost = (p) => {
         setEditMode(false);
@@ -36,32 +38,40 @@ const TodoWorkSpace = (props) => {
     let [editMode, setEditMode] = useState(false);
     let [editUnder, setUnderWork] = useState(false);
     let [status, setStatus] = useState(props.workText[0]);
-    let [check, setCheck] = useState(false);
+    let [check, setCheck] = useState(props.posts[props.p][2]);
     console.log(props.workText[0])
     useEffect( () => {
         setStatus(props.workText[0]);
     }, [props.workText[0]] );
+
+    useEffect( () => {
+        setCheck(props.posts[props.p][2]);
+    }, [props.posts[props.p][2]] );
+
+    
         const underWorkFunc = () => {
             props.underWork({id: props.p, underWork: true});
     }
     let decr = 'none';
     let opc = '1';
     const oncnge = (e) => {
-        if(e) {
-            setCheck(!check);
-        }
+        console.log(props.checked);
+        props.workChecked(props.p);
+        setCheck(props.posts[props.p][2]);
     }
     if(check) {
         decr = 'line-through';
         opc = '0.8';
-        console.log('ishladi')
     }
+    
+    
         return (
             <div style={{opacity: opc}}>            
                 <div className={s.card}>
                 <div><input onChange={(e) => oncnge(e.currentTarget.value)} 
                 className={s.checkInput}
-                type="checkbox"/></div>
+                type="checkbox"
+                checked={props.posts[props.p][2]}/></div>
                     <div className={s.inputblock}>
                     { !editMode &&
                         <p style={{ textDecoration: decr }} className={s.works}>{props.workText[0]}</p>

@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import s from './todo.module.css';
 import {connect} from "react-redux";
-import { addNewWork, addNewWorkInPage, deleteNewWork, underWork, updateNewWork } from '../../redux/todo-reducer';
+import { addNewWork, addNewWorkInPage, deleteNewWork, underWork, updateNewWork, workCheckedDisabled } from '../../redux/todo-reducer';
 import { reduxForm, Field } from 'redux-form';
 import TodoWorkSpace from './todoWorkSpace';
 import TodoModal from './todoModal';
+import { required } from '../utils/validators/validators';
+import { TextArea } from './TextArea/TextArea';
 
 const AddNewWorkForm = (props) => {
     return(
         <form onSubmit={props.handleSubmit}>
-            <Field className={s.addElementInput} type="text" placeholder="Add new tasks" name='postWork' component={'input'}/>
+            <Field autoFocus autoComplete validate={required} className={s.addElementInput} type="text" name='postWork' component={TextArea}/>
             <button className={s.addElementButton}>Add</button>
         </form>
     )
@@ -19,6 +21,7 @@ let AddNewWorkReduxForm = reduxForm({form: 'work'})(AddNewWorkForm)
 const Todo = (props) => {
     const onSubmit = (formData) => {
         props.addNewWork([formData.postWork]);
+        formData.postWork = '';
     }
     let i = 0;
     let j = 0;
@@ -37,6 +40,9 @@ const Todo = (props) => {
                         deleteNewWork={props.deleteNewWork}
                         updateNewWork={props.updateNewWork}
                         underWork={props.underWork}
+                        workChecked={props.workChecked}
+                        checked={w[2]}
+                        posts={props.posts}
                         />)}
                     </div>
                 }
@@ -67,6 +73,9 @@ const Todo = (props) => {
             },
             underWork: (data) => {
                 dispatch(underWork(data))
+            },
+            workChecked: (data) => {
+                dispatch(workCheckedDisabled(data))
             }
         }
     }

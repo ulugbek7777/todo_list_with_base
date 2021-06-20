@@ -1,0 +1,23 @@
+.formcontrol.error input,
+.formcontrol.error textarea {
+    border: solid red 2px;
+}
+.formcontrol.error span {
+    color: red;
+}
+.error {
+    border: solid red 2px !important;
+}
+
+.error::placeholder {
+    color: red;
+    font-weight: bold;
+}
+.addElementInput {
+    border-radius: 10px 0 0 10px;
+    text-decoration: none;
+    border: none;
+    padding: 10px;
+    width: 300px;
+    outline: none;
+}

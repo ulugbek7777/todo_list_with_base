@@ -1,10 +1,16 @@
 let initialState = {
-    posts: [['namuna uchun', ['kcndnlkl'], ['cndncndjn']]],
+    posts: [],
     id: null,
     underWork: false
 };
 
+// localStorage.setItem('data', JSON.stringify(data));
+// let raw = localStorage.getItem('data')
+// let initialState = JSON.parse(raw);
+// console.log(JSON.parse(raw));
+
 const CLOSE_MODAL_WINDOW = 'CLOSE_MODAL_WINDOW';
+const WORK_CHECKED_DISABLED = 'WORK_CHECKED_DISABLED';
 
 const ADD_NEW_WORK = 'ADD_NEW_WORK';
 const DELETE_NEW_WORK = 'DELETE_NEW_WORK';
@@ -22,11 +28,33 @@ const UPDATE_NEW_COMMENT = 'UPDATE_NEW_COMMENT';
 const todoReducer = (state = initialState, action) => {
     switch(action.type) {
         case ADD_NEW_WORK: {
-            let newPost = action.posts;
-            return {
-                ...state,
-                posts: [...state.posts, [newPost, []]]
-            };
+            let i;
+            let checking = true;
+            for(i = 0;state.posts.length > i;i++) {
+                if(state.posts[i][0][0] == action.posts && state.posts[i][2] == false) {
+                    console.log('tru');
+                    checking = false;
+                }
+            }
+            if(checking) {
+                if(action.posts != "") {
+                    let newPost = action.posts;
+                    return {
+                        ...state,
+                        posts: [...state.posts, [newPost, [], false]]
+                    };
+                }else {
+                    alert('siz hech narsa yozmadingiz');
+                    return {
+                        ...state
+                    }
+                }
+            }else {
+                alert('Bunday vazifaa allaqachon kiritilgan');
+                return {
+                    ...state
+                }
+            }
         }
         case DELETE_NEW_WORK: {
             let id = action.id;
@@ -123,6 +151,13 @@ const todoReducer = (state = initialState, action) => {
                 ...state
             }
         }
+        case WORK_CHECKED_DISABLED: {
+            state.posts[action.id][2] = !state.posts[action.id][2];
+            return {
+                ...state,
+                ...state.posts
+            }
+        }
         default: return state;    
     }     
 }
@@ -140,6 +175,7 @@ export const addNewComment = (data) => ({type: ADD_NEW_COMMENT, data});
 export const deleteNewComment = (data) => ({type: DELETE_NEW_COMMENT, data});
 export const updateNewComment = (data) => ({type: UPDATE_NEW_COMMENT, data});
 export const closeModalWindow = () => ({ type: CLOSE_MODAL_WINDOW })
+export const workCheckedDisabled = (id) => ({ type: WORK_CHECKED_DISABLED, id })
 
 
 
