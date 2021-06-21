@@ -10,11 +10,12 @@ import DeleteIcon from './../images/delete.png';
 const TodoWorkSpace = (props) => {
     let i = 0;
     const deletePost = (p) => {
-        let data = prompt('ochirmoqchimisiz', 'ha');
+        // let data = prompt('ochirmoqchimisiz', 'ha');
         
-        if(data == 'ha') {
-            props.deleteNewWork(p)         
-        }
+        // if(data == 'ha') {
+        //     props.deleteNewWork(p)         
+        // }
+        props.setModalWin(p);
     }
     const EditChange = (p) => {
         // props.updateNewWork({id: p, post: 'yo mazafaka'});

@@ -1,7 +1,9 @@
 let initialState = {
     posts: [],
     id: null,
-    underWork: false
+    underWork: false,
+    setModal: false,
+    deleteNewWorkWithModal: null
 };
 
 // localStorage.setItem('data', JSON.stringify(data));
@@ -11,6 +13,8 @@ let initialState = {
 
 const CLOSE_MODAL_WINDOW = 'CLOSE_MODAL_WINDOW';
 const WORK_CHECKED_DISABLED = 'WORK_CHECKED_DISABLED';
+
+const SET_MODAL = 'SET_MODAL';
 
 const ADD_NEW_WORK = 'ADD_NEW_WORK';
 const DELETE_NEW_WORK = 'DELETE_NEW_WORK';
@@ -158,6 +162,14 @@ const todoReducer = (state = initialState, action) => {
                 ...state.posts
             }
         }
+        case SET_MODAL: {
+            state.setModal = !state.setModal;
+            state.deleteNewWorkWithModal = action.p;
+            return {
+                ...state
+            }
+        }
+        
         default: return state;    
     }     
 }
@@ -176,6 +188,8 @@ export const deleteNewComment = (data) => ({type: DELETE_NEW_COMMENT, data});
 export const updateNewComment = (data) => ({type: UPDATE_NEW_COMMENT, data});
 export const closeModalWindow = () => ({ type: CLOSE_MODAL_WINDOW })
 export const workCheckedDisabled = (id) => ({ type: WORK_CHECKED_DISABLED, id })
+
+export const setModalWindow = (p) => ({ type: SET_MODAL, p })
 
 
 
